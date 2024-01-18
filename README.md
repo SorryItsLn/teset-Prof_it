@@ -1,4 +1,12 @@
 # MyApp
+how to intsall
+git init
+git clone https://github.com/SorryItsLn/teset-Prof_it.git
+cd teset-Prof_it
+npm install
+npm start
+
+Возникла большая проблема с API , но я так и не понял как все таки выводит все 100 товаров, через fetch вcе рабоатет, тут не получилось, Спасибо за обратную связь 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
 
