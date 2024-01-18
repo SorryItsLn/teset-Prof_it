@@ -7,7 +7,7 @@ import { ProductService } from '../../requests/services/product.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrl: './product.component.scss'
+  styleUrl : './product.component.scss'
 })
 export class ProductComponent implements OnInit {
 
@@ -15,7 +15,7 @@ export class ProductComponent implements OnInit {
   link = ''
   public product$? : Observable<IProduct[]> 
   categories : any  //изначльно лпнировал привязать интерфейс, не хватило знаний ts
-  default_url : string = ""
+  default_url : string  = ""
   constructor(private http: HttpClient, private ProductService : ProductService){
   
 
@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit {
   getAllCategory(){
     this.http.get(`https://dummyjson.com/products/categories`).subscribe(res =>{
       this.categories = res 
-      console.log(this.categories);
+      console.log(this.categories); 
       
       
     })
