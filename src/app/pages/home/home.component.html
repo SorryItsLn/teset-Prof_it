@@ -1,0 +1,37 @@
+<form [formGroup]="userData" (ngSubmit)="onAuth()" class="auth_form">
+    <h1>Login</h1>
+
+    <div class="form_content">
+        <label for="Email" class="email_label">Email</label>
+        <input formControlName="email" required type="email" placeholder="Email" />
+    </div>
+    <div class="not_valid" *ngIf="userData.controls['email'].invalid && 
+      (userData.controls['email'].dirty || userData.controls['email'].touched)  ">
+
+        <div *ngIf="userData.controls['email'].hasError('required')">
+            Поле ввода обязательно
+        </div>
+        <div *ngIf="userData.controls['email'].hasError('email')">
+            Введен неверный Email
+        </div>
+    </div>
+    <div class="form_content">
+        <label for="Password" class="email_label">Password</label>
+        <input formControlName="password" required type="password" placeholder="Password" />
+    </div>
+    <div class="not_valid" *ngIf="userData.controls['password'].invalid && 
+      (userData.controls['password'].dirty || userData.controls['password'].touched)  ">
+        <div *ngIf="userData.controls['password'].hasError('required')">
+            Поле ввода обязательно
+        </div>
+        <div *ngIf="userData.controls['password'].hasError('minlength')">
+            Минимальная длина 6 символов
+        </div>
+
+    </div>
+
+    <div class="btn_group">
+        <button class="btn_green">Войти</button>
+        <button class="btn">Отмена</button>
+    </div>
+</form>

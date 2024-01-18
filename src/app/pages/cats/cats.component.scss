@@ -1,0 +1,31 @@
+.cats{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid gray;
+    gap: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+
+}
+input {
+    font-size: small;
+    font-weight: 600;
+    padding: 20px 5px;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid gray;
+    color: grey;
+
+    
+}
+a{
+    color: grey;
+    text-decoration: none;
+    &:hover{
+        color: rgb(46, 46, 46); 
+    }
+
+}

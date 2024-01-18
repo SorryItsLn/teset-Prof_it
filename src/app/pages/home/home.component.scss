@@ -1,0 +1,76 @@
+.auth_form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid gray;
+    gap: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+
+}
+
+h1 {
+    text-align: center;
+}
+
+.form_content {
+    display: flex;
+    flex-direction: column;
+}
+
+.email_label {
+    color: gray;
+    font-size: small;
+}
+
+input {
+    font-size: small;
+    font-weight: 600;
+    padding: 20px 5px;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid gray
+}
+
+.btn {
+    font-size: large;
+    padding: 10px 25px;
+    border-radius: 6px;
+    color: white;
+    background: rgba(128, 128, 128, 0.486);
+    cursor: pointer;
+
+    &:hover {
+        background: rgb(78, 78, 78);
+    }
+
+}
+
+.btn_green {
+    font-size: large;
+
+    padding: 10px 25px;
+    border-radius: 6px;
+    color: white;
+    background: rgb(5, 121, 39);
+    cursor: pointer;
+
+    &:hover {
+        background: rgb(26, 136, 61);
+        ;
+    }
+}
+
+.btn_group {
+    display: flex;
+    gap: 15px;
+    justify-content: end;
+}
+
+.not_valid {
+    font-size: small;
+    color: red;
+    margin-top: 4px;
+}
