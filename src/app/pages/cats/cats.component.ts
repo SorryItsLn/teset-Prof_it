@@ -15,7 +15,6 @@ export class CatsComponent {
   catsData: FormGroup;
   constructor(
     private http: HttpClient,
-    private router: Router
   ) {
     this.catsData = new FormGroup({
       dataWithText: new FormControl(null, [Validators.minLength(0)]),
@@ -25,11 +24,9 @@ export class CatsComponent {
   catWiwthText() {
     if (this.catsData.value.dataWithText == null) {
       this.link = 'https://cataas.com/cat';
-      console.log('ndnjfh');
     } else {
       this.link ='https://cataas.com/cat/says/' + this.catsData.value.dataWithText;
       this.catsData.reset();
-      console.log('первая');
     }
   }
 }

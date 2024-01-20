@@ -1,24 +1,50 @@
 <div class="main_product">
-    <h1 class="title">Категории</h1>
-    <ul >
-        <li *ngFor="let item of categories" (click)="getProductByCategeory(item)"  >{{item}} </li>
-        <li (click)="getProductByCategeory('jewelery')">jewerly</li> 
-        <!-- из за того что приходят не все 100 обяектов, категории не совпадают, в первых 20 таких простот нет
-            jewerly служит для проверки
-        -->
-        <li (click)="getAllProduct()">Получить все</li>
-    </ul>
+  <h1 class="title">Категории</h1>
+  <ul>
+    <li *ngFor="let item of categories" (click)="getProductByCategeory(item)">
+      {{ item }}
+    </li>
 
-    <div class="product_content" > 
-        <div *ngFor="let product of productGet.products " class="card">
-            <img src={{product.images[0]}} alt="">
-            <div class="about"><p class="">{{product.title}}</p>
-                <p>Category : {{product.category}}</p></div>
-            <div class="card_price"><p>{{product.rating.rate}}&#9733;</p>
-            <p>{{product.price | currency}}</p></div>
-        </div>
+    <li (click)="getAllProduct(1)">Получить все</li>
+  </ul>
+  <!-- фильтп -->
+  <div class="product_filter">
+    <input [(ngModel)]="filter"   placeholder="Введите фильтр" type="text" />
+  </div>
 
+  <!-- пагинация -->
+  <div class="pagination">
+    <button class="pagination_item" (click)="prev(pagination_caunt)">
+      prev
+    </button>
+
+
+    
+    <div
+      *ngFor="let itemPagination of pagination"
+      (click)="getAllProduct(itemPagination)"
+      class="pagination_item"
+      [class.target]="itemPagination === pagination_caunt"
+    >
+      {{ itemPagination }}
     </div>
-
-
+    <button class="pagination_item" (click)="next(pagination_caunt)">
+      next
+    </button>
+  </div>
+  
+<!-- Главная -->
+  <div class="product_content">
+    <div *ngFor="let product of products.products | filterProducts: filter" class="card">
+      <img src="{{ product.images[0] }}" alt="" />
+      <div class="about">
+        <p class="">{{ product.title }}</p>
+        <p>Category : {{ product.category }}</p>
+      </div>
+      <div class="card_price">
+        <p>&#9733; {{ product.rating }}</p>
+        <p>{{ product.price | currency }}</p>
+      </div>
+    </div>
+  </div>
 </div>
