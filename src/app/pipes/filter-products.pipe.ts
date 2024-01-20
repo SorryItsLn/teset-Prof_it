@@ -4,10 +4,10 @@ import { IProduct } from '../models/datsInt';
 @Pipe({
   name: 'filterProducts'
 })
-export class FilterProductsPipe implements PipeTransform {
+export class FilterProductsPipe  {
 
-  transform(products: IProduct[], search: string): IProduct[] {
-    return products.filter(p=> p.category.toLowerCase().includes(search.toLowerCase()))
-  }
+  // transform(products: IProduct[], search: string): IProduct[] {
+  //   return products.filter(p=> p.category.toLowerCase().includes(search.toLowerCase()))
+  // }
 
 }

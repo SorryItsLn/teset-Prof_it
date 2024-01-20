@@ -19,6 +19,11 @@ export class ProductService {
 
     })
   }
+  public getByCategory(category: string): Observable<IProduct[]>{
+    return this.http.get<IProduct[]>(`https://dummyjson.com/products/categories/smartphones`, {
+      // params : new HttpParams().set('category', category)
+    })
+  }
 
 
 }

@@ -1,17 +1,17 @@
 <div class="main_product">
     <h1 class="title">Категории</h1>
     <ul >
-        <li *ngFor="let item of categories" (click)="getCategory(item)"  >{{item}} </li>
-        <li (click)="getCategory('jewelery')">jewerly</li> 
+        <li *ngFor="let item of categories" (click)="getProductByCategeory(item)"  >{{item}} </li>
+        <li (click)="getProductByCategeory('jewelery')">jewerly</li> 
         <!-- из за того что приходят не все 100 обяектов, категории не совпадают, в первых 20 таких простот нет
             jewerly служит для проверки
         -->
-        <li (click)="getCategory('')">Получить все</li>
+        <li (click)="getAllProduct()">Получить все</li>
     </ul>
 
-    <div *ngIf="product$ | async as products"  class="product_content" > 
-        <div *ngFor="let product of products | filterProducts: link" class="card">
-            <img [src]="product.image" alt="">
+    <div class="product_content" > 
+        <div *ngFor="let product of productGet.products " class="card">
+            <img src={{product.images[0]}} alt="">
             <div class="about"><p class="">{{product.title}}</p>
                 <p>Category : {{product.category}}</p></div>
             <div class="card_price"><p>{{product.rating.rate}}&#9733;</p>

@@ -12,9 +12,9 @@ import { ProductService } from '../../requests/services/product.service';
 export class ProductComponent implements OnInit {
 
   filter = ''
-  link = ''
-  public product$? : Observable<IProduct[]> 
-  categories : any  //изначльно лпнировал привязать интерфейс, не хватило знаний ts
+  link : string = ''
+  productGet : any
+  categories : any  
   default_url : string  = ""
   constructor(private http: HttpClient, private ProductService : ProductService){
   
@@ -23,24 +23,34 @@ export class ProductComponent implements OnInit {
   getCategory(item : string){
     this.link = item
     console.log(this.link );
-    
   }
+  getProductByCategeory(category: string){
+    this.http.get( `https://dummyjson.com/products/category/${category}`).subscribe(res  => {
+      this.productGet = res})
+      
+  }
+  getAllProduct(){
+    this.http.get(`https://dummyjson.com/products`).subscribe(res => {
+console.log(res);
+this.productGet = res
+
+    })
+  }
+  
   getAllCategory(){
     this.http.get(`https://dummyjson.com/products/categories`).subscribe(res =>{
       this.categories = res 
       console.log(this.categories); 
       
-      
     })
   }
   
   ngOnInit(): void {
+    this.getAllProduct()
+    console.log(this.productGet);
+    
     this.getAllCategory()
-    this.product$ =  this.ProductService.getAll()
-    this.ProductService.getAll().subscribe(p=>{
-      console.log(p);
-      
-    })
+    
     
   }
 
