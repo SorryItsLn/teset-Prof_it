@@ -13,12 +13,12 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrl: './product.component.scss',
 })
 export class ProductComponent implements OnInit {
-  filter : string = ""
-  link: string = '';
-  products?: any = [];
-  categories: any;
-  pagination: number[] = [];
-  pagination_caunt: number = 1;
+  filter : string = ""; // содержимое инпута фильтрации
+  link: string = ''; // содержимое кнопки фильтрации по категории
+  products: any = []; // все продукты
+  categories: any; // все категории
+  pagination: number[] = []; // элементы массива пагинации
+  pagination_caunt: number = 1; // текущие массив товаров пагинации
 
   constructor(
     private http: HttpClient,
@@ -27,9 +27,14 @@ export class ProductComponent implements OnInit {
     
 
   }
+  
+// получение нажатой катгории
+
   getCategory(item: string) {
     this.link = item;
   }
+// получение товаров по категории
+
   getProductByCategeory(category: string) {
     this.http
       .get(`https://dummyjson.com/products/category/${category}`)
@@ -37,6 +42,8 @@ export class ProductComponent implements OnInit {
         this.products = res;
       });
   }
+
+// получение всех товаров
 
   getAllProduct(pagination_caunt: number) {
     this.pagination_caunt = pagination_caunt;
@@ -50,35 +57,46 @@ export class ProductComponent implements OnInit {
       });
   }
 
+
+// получение всех категорий
   getAllCategory() {
     this.http
-      .get(`https://dummyjson.com/products/categories`)
+      .get(`https://dummyjson.com/products/categories`).pipe(
+      )
       .subscribe((res) => {
         this.categories = res;
+        (this.paginationCreate(this.products.limit, this.products.total))
       });
   }
+
+
+// функция создание элементов пагинцаии
   paginationCreate(limit: number, total: number) {
     for (let i: number = 1; i * limit < total; i++) {
       this.pagination.push(i);
     }
   }
+
+
+// функция паггинации слдеующий разряд 
   next(count: number) {
+    // проверка с последний элемнта перебрасывается на 1
     if ((count > this.pagination.length-1)) {
       this.pagination_caunt = this.pagination[0];
       this.getAllProduct(this.pagination_caunt);
-      console.log(this.pagination_caunt);
     } else {
       this.getAllProduct(this.pagination_caunt + 1);
     }
   }
+
+
+// функция паггинации предыдущий разряд 
   prev(count: number) {
+    // проверка с 1 элемнта перебрасывается на последний
     if ((count < this.pagination[0]+1)) {
       this.pagination_caunt = this.pagination[this.pagination.length - 1];
-      console.log(this.pagination_caunt, 'условие');
-
       this.getAllProduct(this.pagination_caunt);
     } else {
-      console.log(this.pagination_caunt);
 
       this.getAllProduct(this.pagination_caunt - 1);
     }
@@ -86,8 +104,6 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.getAllProduct(this.pagination_caunt);
     this.getAllCategory();
-    this.paginationCreate(this.products.limit, this.products.total);
 
-    console.log(this.filter);
   }
 }
